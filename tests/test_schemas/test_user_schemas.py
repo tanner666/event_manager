@@ -4,19 +4,6 @@ from datetime import datetime
 from app.schemas.user_schemas import UserBase, UserCreate, UserUpdate, UserResponse, UserListResponse, LoginRequest
 
 # Fixtures for common test data
-@pytest.fixture
-def user_base_data():
-    return {
-        "username": "john_doe_123",
-        "email": "john.doe@example.com",
-        "full_name": "John Doe",
-        "bio": "I am a software engineer with over 5 years of experience.",
-        "profile_picture_url": "https://example.com/profile_pictures/john_doe.jpg"
-    }
-
-@pytest.fixture
-def user_create_data(user_base_data):
-    return {**user_base_data, "password": "SecurePassword123!"}
 
 @pytest.fixture
 def user_update_data():
@@ -43,17 +30,23 @@ def user_response_data():
 def login_request_data():
     return {"username": "john_doe_123", "password": "SecurePassword123!"}
 
+# Function to extract example data from a Pydantic model
+def get_model_example_data(model):
+    return model.schema()['example']
+
 # Tests for UserBase
-def test_user_base_valid(user_base_data):
-    user = UserBase(**user_base_data)
-    assert user.username == user_base_data["username"]
-    assert user.email == user_base_data["email"]
+def test_user_base_valid():
+    example_data = get_model_example_data(UserBase)
+    user = UserBase(**example_data)
+    assert user.username == example_data["username"]
+    assert user.email == example_data["email"]
 
 # Tests for UserCreate
-def test_user_create_valid(user_create_data):
-    user = UserCreate(**user_create_data)
-    assert user.username == user_create_data["username"]
-    assert user.password == user_create_data["password"]
+def test_user_create_valid():
+    example_data = get_model_example_data(UserCreate)
+    user = UserCreate(**example_data)
+    assert user.username == example_data["username"]
+    assert user.password == example_data["password"]
 
 # Tests for UserUpdate
 def test_user_update_partial(user_update_data):
@@ -76,13 +69,15 @@ def test_login_request_valid(login_request_data):
 
 # Parametrized tests for username and email validation
 @pytest.mark.parametrize("username", ["test_user", "test-user", "testuser123", "123test"])
-def test_user_base_username_valid(username, user_base_data):
-    user_base_data["username"] = username
-    user = UserBase(**user_base_data)
+def test_user_base_username_valid(username):
+    example_data = get_model_example_data(UserBase)
+    example_data["username"] = username
+    user = UserBase(**example_data)
     assert user.username == username
 
 @pytest.mark.parametrize("username", ["test user", "test?user", "", "us"])
-def test_user_base_username_invalid(username, user_base_data):
-    user_base_data["username"] = username
+def test_user_base_username_invalid(username):
+    example_data = get_model_example_data(UserBase)
+    example_data["username"] = username
     with pytest.raises(ValidationError):
-        UserBase(**user_base_data)
+        UserBase(**example_data)
