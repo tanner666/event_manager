@@ -71,7 +71,7 @@ class UserBase(BaseModel):
         description="A short biography or description of the user.",
         example="I am a software engineer with over 5 years of experience in building scalable web applications using Python and JavaScript."
     )
-    profile_picture_url: Optional[str] = Field(
+    profile_picture_url: Optional[HttpUrl] = Field(
         None,
         description="The URL to the user's profile picture. Must point to a valid image file (e.g., JPEG, PNG).",
         example="https://example.com/profile_pictures/john_doe.jpg"
