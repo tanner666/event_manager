@@ -247,8 +247,8 @@ class UserResponse(UserBase):
                 "created_at": "2023-04-01T10:15:30+00:00",
                 "updated_at": "2023-04-05T16:45:00+00:00",
                 "links": [
-                    {"rel": "self", "href": "https://api.example.com/users/a1b2c3d4-e5f6-g7h8-i9j0-k1l2m3n4o5p6"},
-                    {"rel": "update", "href": "https://api.example.com/users/a1b2c3d4-e5f6-g7h8-i9j0-k1l2m3n4o5p6"}
+                    {"rel": "self", "href": "https://api.example.com/users/a1b2c3d4-e5f6-g7h8-i9j0-k1l2m3n4o5p6", "action": "GET"},
+                    {"rel": "update", "href": "https://api.example.com/users/a1b2c3d4-e5f6-g7h8-i9j0-k1l2m3n4o5p6", "action": "PUT"}
                 ]
             }
         }

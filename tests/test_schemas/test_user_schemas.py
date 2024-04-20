@@ -2,18 +2,7 @@ import pytest
 from pydantic import ValidationError
 from datetime import datetime
 from app.schemas.user_schemas import UserBase, UserCreate, UserUpdate, UserResponse, UserListResponse, LoginRequest
-
-@pytest.fixture
-def user_response_data():
-    return {
-        "id": "unique-id-string",
-        "username": "testuser",
-        "email": "test@example.com",
-        "last_login_at": datetime.now(),
-        "created_at": datetime.now(),
-        "updated_at": datetime.now(),
-        "links": []
-    }
+from dateutil import parser
 
 # Function to extract example data from a Pydantic model
 def get_model_example_data(model):
@@ -41,11 +30,12 @@ def test_user_update_partial():
     assert user_update.email == partial_data["email"]
 
 # Tests for UserResponse
-def test_user_response_datetime(user_response_data):
-    user = UserResponse(**user_response_data)
-    assert user.last_login_at == user_response_data["last_login_at"]
-    assert user.created_at == user_response_data["created_at"]
-    assert user.updated_at == user_response_data["updated_at"]
+def test_user_response_datetime():
+    data = get_model_example_data(UserResponse)
+    user = UserResponse(**data)
+    assert user.last_login_at == parser.parse(data["last_login_at"])
+    assert user.created_at == parser.parse(data["created_at"])
+    assert user.updated_at == parser.parse(data["updated_at"])
 
 # Tests for LoginRequest
 def test_login_request_valid():
