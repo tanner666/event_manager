@@ -8,7 +8,8 @@
 
 # Link to Dockerhub image
 [Link](https://hub.docker.com/layers/tanner235/docker_event_manager/latest/images/sha256-03802cdf62cbadefa9ba8c89b3402338220547d4f8c26b7c6fa781efbd179bdb?context=repo)
-![Docker Hub](./images/dockerhub_img.png)
+
+![Docker Hub](./images/'Screenshot 2024-04-20 180404.png')
 
 # Reflection
 I learned both proper github collaboration techniques and schema analysis/testing in this assignment. First off, I learned the proper workflow of making changes with git: Create an issue with a descritive title on GitHub, assign this to yourself, create a new branch from it, fetch and checkout to it on local, make changes, run tests, push to GitHub, create a pull request, have someone review the code (just me in this case, but usually someone else), and merge into other branch if everything checks out.
