@@ -58,3 +58,17 @@ def test_user_base_username_invalid(username):
     example_data["username"] = username
     with pytest.raises(ValidationError):
         UserBase(**example_data)
+
+@pytest.mark.parametrize("email", ["bo@gmail.com", "bo12f@gmail.com", "kd28ds@yahoo.com", "dasfasdf@fadsj.corg"])
+def test_user_base_email_valid(email):
+    example_data = get_model_example_data(UserBase)
+    example_data["email"] = email
+    user = UserBase(**example_data)
+    assert user.email == email
+
+@pytest.mark.parametrize("email", ["12emasf", "bob5$gmail.com", "", "bog@gmail"])
+def test_user_base_email_invalid(email):
+    example_data = get_model_example_data(UserBase)
+    example_data["email"] = email
+    with pytest.raises(ValidationError):
+        UserBase(**example_data)
