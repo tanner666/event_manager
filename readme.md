@@ -6,6 +6,15 @@
 [Issue Five](https://github.com/tanner666/event_manager/issues/11)
 [Issue from Instructor Video](https://github.com/tanner666/event_manager/issues/3)
 
+# Link to Dockerhub image
+[Link](https://hub.docker.com/layers/tanner235/docker_event_manager/latest/images/sha256-03802cdf62cbadefa9ba8c89b3402338220547d4f8c26b7c6fa781efbd179bdb?context=repo)
+![Docker Hub](./images/dockerhub_img.png)
+
+# Reflection
+I learned both proper github collaboration techniques and schema analysis/testing in this assignment. First off, I learned the proper workflow of making changes with git: Create an issue with a descritive title on GitHub, assign this to yourself, create a new branch from it, fetch and checkout to it on local, make changes, run tests, push to GitHub, create a pull request, have someone review the code (just me in this case, but usually someone else), and merge into other branch if everything checks out.
+
+Secondly, the code I was reviewing for this project was the user model and user schemas. Its important to make sure the user schemas align with the user model. While checking for error in the user schema and Docs page, I got an overview of how sql alchemy is used in conjunction with the postgres databse. I also got experience running the entire project on Docker, from building the image, to running tests and migrations through Docker.
+
 # Event Manager Company: Software QA Analyst/Developer Onboarding Assignment
 
 Welcome to the Event Manager Company! As a newly hired Software QA Analyst/Developer and a graduate student in software engineering, you are embarking on an exciting journey to contribute to our project aimed at developing a secure, robust REST API that supports JWT token-based OAuth2 authentication. This API serves as the backbone of our user management system and will eventually expand to include features for event management and registration.
